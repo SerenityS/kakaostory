@@ -32,6 +32,7 @@ dependencies:
   flutter_inappwebview: ^5.4.3+7
   flutter_svg: ^1.1.5
   get: ^4.6.5
+  requests: ^4.5.0
 
 dev_dependencies:
   flutter_test:
