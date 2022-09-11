@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_inappwebview: ^5.4.3+7
+  flutter_svg: ^1.1.5
   get: ^4.6.5
 
 dev_dependencies:
