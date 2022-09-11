@@ -1,14 +1,14 @@
 class UploadedImageProp {
-  Original? original;
-  Xlarge? xlarge;
-  Large? large;
-  Medium? medium;
-  Small? small;
-  Fs? fs;
-  Frame? frame;
-  Face? face;
-  String? access_key;
-  Info? info;
+  static Original? original;
+  static Xlarge? xlarge;
+  static Large? large;
+  static Medium? medium;
+  static Small? small;
+  static Fs? fs;
+  static Frame? frame;
+  static Face? face;
+  static String? access_key;
+  static Info? info;
 }
 
 class Original {

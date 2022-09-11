@@ -1,7 +1,7 @@
 class FriendData {
-  Relation relation = Relation();
-  Profile profile = Profile();
-  Friends friends = Friends();
+  static Relation relation = Relation();
+  static Profile profile = Profile();
+  static Friends friends = Friends();
 }
 
 class Relation {
