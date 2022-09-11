@@ -9,7 +9,7 @@ class AuthController extends GetxController {
   String kakaoCookies = "";
 
   saveCookies() async {
-    var cookies = await cookieManager.getCookies(url: Uri.parse(KakaoUrl.loginUrl));
+    var cookies = await cookieManager.getCookies(url: Uri.parse(KakaoUrl.mainUrl));
     for (var c in cookies) {
       kakaoCookies += "${c.name}=${c.value}; ";
     }
