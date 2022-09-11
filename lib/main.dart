@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kakaostory/controller/auth_controller.dart';
 import 'package:kakaostory/view/splash_view.dart';
 
-void main() {
+  Get.put(AuthController());
+
   runApp(const MyApp());
 }
 
