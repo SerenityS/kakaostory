@@ -25,7 +25,7 @@ class Feed {
   int? commentCount;
   bool? downloadable;
   bool? pinned;
-  String? createdAt;
+  DateTime? createdAt;
   int? withTagCount;
   bool? sharable;
   List<ClosestWithTags>? closestWithTags;
@@ -36,7 +36,7 @@ class Feed {
   String? feedId;
   String? sid;
   String? nextCallForActivityRecommend;
-  String? updatedAt;
+  DateTime? updatedAt;
   String? mediaType;
   String? activityType;
   String? id;
@@ -101,7 +101,7 @@ class Feed {
     commentCount = json['comment_count'];
     downloadable = json['downloadable'];
     pinned = json['pinned'];
-    createdAt = json['created_at'];
+    createdAt = DateTime.parse(json['created_at']).add(const Duration(hours: 9));
     withTagCount = json['with_tag_count'];
     sharable = json['sharable'];
     if (json['closest_with_tags'] != null) {
@@ -122,7 +122,7 @@ class Feed {
     feedId = json['feed_id'];
     sid = json['sid'];
     nextCallForActivityRecommend = json['next_call_for_activity_recommend'];
-    updatedAt = json['updated_at'];
+    updatedAt = DateTime.parse(json['updated_at']).add(const Duration(hours: 9));
     mediaType = json['media_type'];
     activityType = json['activity_type'];
     id = json['id'];
