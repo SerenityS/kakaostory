@@ -38,7 +38,7 @@ class Feed {
   String? sid;
   bool? sympathized;
   Scrap? scrap;
-  ContentDecorators? contentDecorators;
+  List<ContentDecorators>? contentDecorators;
   String? nextCallForActivityRecommend;
   DateTime? updatedAt;
   String? mediaType;
@@ -132,7 +132,12 @@ class Feed {
     sid = json['sid'];
     sympathized = json['sympathized'];
     scrap = json['scrap'] != null ? Scrap.fromJson(json['scrap']) : null;
-    contentDecorators = json['content_decorators'] != null ? ContentDecorators.fromJson(json['content_decorators']) : null;
+    if (json['content_decorators'] != null) {
+      contentDecorators = <ContentDecorators>[];
+      json['content_decorators'].forEach((v) {
+        contentDecorators!.add(ContentDecorators.fromJson(v));
+      });
+    }
     nextCallForActivityRecommend = json['next_call_for_activity_recommend'];
     updatedAt = DateTime.parse(json['updated_at']).add(const Duration(hours: 9));
     mediaType = json['media_type'];
