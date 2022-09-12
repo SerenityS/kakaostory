@@ -243,6 +243,7 @@ class ClosestWithTags {
 
 class Media {
   String? url;
+  String? previewUrl;
   String? thumbnailUrl2;
   String? thumbnailUrl3;
   String? thumbnailUrl;
@@ -257,26 +258,30 @@ class Media {
   String? sqUrl;
   bool? searchable;
   String? iid;
+  bool isVideo = false;
 
-  Media(
-      {this.url,
-      this.thumbnailUrl2,
-      this.thumbnailUrl3,
-      this.thumbnailUrl,
-      this.originUrl,
-      this.url2,
-      this.jpgUrl,
-      this.key,
-      this.contentType,
-      this.width,
-      this.height,
-      this.mediaPath,
-      this.sqUrl,
-      this.searchable,
-      this.iid});
+  Media({
+    this.url,
+    this.previewUrl,
+    this.thumbnailUrl2,
+    this.thumbnailUrl3,
+    this.thumbnailUrl,
+    this.originUrl,
+    this.url2,
+    this.jpgUrl,
+    this.key,
+    this.contentType,
+    this.width,
+    this.height,
+    this.mediaPath,
+    this.sqUrl,
+    this.searchable,
+    this.iid,
+  });
 
   Media.fromJson(Map<String, dynamic> json) {
     url = json['url'];
+    previewUrl = json['preview_url'];
     thumbnailUrl2 = json['thumbnail_url2'];
     thumbnailUrl3 = json['thumbnail_url3'];
     thumbnailUrl = json['thumbnail_url'];
@@ -291,6 +296,7 @@ class Media {
     sqUrl = json['sq_url'];
     searchable = json['searchable'];
     iid = json['iid'];
+    if (previewUrl != null) isVideo = true;
   }
 
   Map<String, dynamic> toJson() {
@@ -310,6 +316,7 @@ class Media {
     data['sq_url'] = sqUrl;
     data['searchable'] = searchable;
     data['iid'] = iid;
+    data['is_video'] = isVideo;
     return data;
   }
 }
