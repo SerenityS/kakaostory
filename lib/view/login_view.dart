@@ -3,7 +3,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
 import 'package:kakaostory/const/kakao_urls.dart' as KakaoUrl;
 import 'package:kakaostory/controller/auth_controller.dart';
-import 'package:kakaostory/view/main_view.dart';
+import 'package:kakaostory/view/time_line_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class _LoginViewState extends State<LoginView> {
           onLoadStop: (controller, url) async {
             if (url!.host.contains("story.kakao.com")) {
               await AuthController.instance.saveCookies();
-              Get.offAll(() => MainView());
+              Get.offAll(() => TimeLineView());
             }
           }),
     );
