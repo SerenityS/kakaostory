@@ -36,6 +36,9 @@ class Feed {
   bool? liked;
   String? feedId;
   String? sid;
+  bool? sympathized;
+  Scrap? scrap;
+  ContentDecorators? contentDecorators;
   String? nextCallForActivityRecommend;
   DateTime? updatedAt;
   String? mediaType;
@@ -75,6 +78,9 @@ class Feed {
       this.liked,
       this.feedId,
       this.sid,
+      this.sympathized,
+      this.scrap,
+      this.contentDecorators,
       this.nextCallForActivityRecommend,
       this.updatedAt,
       this.mediaType,
@@ -124,6 +130,9 @@ class Feed {
     liked = json['liked'];
     feedId = json['feed_id'];
     sid = json['sid'];
+    sympathized = json['sympathized'];
+    scrap = json['scrap'] != null ? Scrap.fromJson(json['scrap']) : null;
+    contentDecorators = json['content_decorators'] != null ? ContentDecorators.fromJson(json['content_decorators']) : null;
     nextCallForActivityRecommend = json['next_call_for_activity_recommend'];
     updatedAt = DateTime.parse(json['updated_at']).add(const Duration(hours: 9));
     mediaType = json['media_type'];
@@ -240,6 +249,37 @@ class ClosestWithTags {
     data['relationship'] = relationship;
     data['type'] = type;
     data['is_birthday'] = isBirthday;
+    return data;
+  }
+}
+
+class ContentDecorators {
+  int? itemVer;
+  String? itemId;
+  int? itemSubType;
+  int? resourceId;
+  String? text;
+  String? type;
+
+  ContentDecorators({this.itemVer, this.itemId, this.itemSubType, this.resourceId, this.text, this.type});
+
+  ContentDecorators.fromJson(Map<String, dynamic> json) {
+    itemVer = json['item_ver'];
+    itemId = json['item_id'];
+    itemSubType = json['item_sub_type'];
+    resourceId = json['resource_id'];
+    text = json['text'];
+    type = json['type'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['item_ver'] = itemVer;
+    data['item_id'] = itemId;
+    data['item_sub_type'] = itemSubType;
+    data['resource_id'] = resourceId;
+    data['text'] = text;
+    data['type'] = type;
     return data;
   }
 }
@@ -794,6 +834,63 @@ class Actor {
     data['permalink'] = permalink;
     data['is_default_profile_image'] = isDefaultProfileImage;
     data['is_feed_blocked'] = isFeedBlocked;
+    return data;
+  }
+}
+
+class Scrap {
+  String? title;
+  String? description;
+  String? url;
+  String? type;
+  bool? isOpengraph;
+  String? host;
+  String? requestedUrl;
+  List<String>? image;
+  String? siteName;
+  String? section;
+  String? destUrl;
+
+  Scrap(
+      {this.title,
+      this.description,
+      this.url,
+      this.type,
+      this.isOpengraph,
+      this.host,
+      this.requestedUrl,
+      this.image,
+      this.siteName,
+      this.section,
+      this.destUrl});
+
+  Scrap.fromJson(Map<String, dynamic> json) {
+    title = json['title'];
+    description = json['description'];
+    url = json['url'];
+    type = json['type'];
+    isOpengraph = json['is_opengraph'];
+    host = json['host'];
+    requestedUrl = json['requested_url'];
+    image = json['image'].cast<String>();
+    siteName = json['site_name'];
+    section = json['section'];
+    destUrl = json['dest_url'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['description'] = description;
+    data['url'] = url;
+    data['type'] = type;
+    data['is_opengraph'] = isOpengraph;
+    data['host'] = host;
+    data['requested_url'] = requestedUrl;
+    data['image'] = image;
+    data['site_name'] = siteName;
+    data['section'] = section;
+    data['dest_url'] = destUrl;
     return data;
   }
 }
