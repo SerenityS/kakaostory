@@ -25,6 +25,7 @@ class Feed {
   int? commentCount;
   bool? downloadable;
   bool? pinned;
+  int? allowedFriendsCount;
   DateTime? createdAt;
   int? withTagCount;
   bool? sharable;
@@ -63,6 +64,7 @@ class Feed {
       {this.commentCount,
       this.downloadable,
       this.pinned,
+      this.allowedFriendsCount,
       this.createdAt,
       this.withTagCount,
       this.sharable,
@@ -101,6 +103,7 @@ class Feed {
     commentCount = json['comment_count'];
     downloadable = json['downloadable'];
     pinned = json['pinned'];
+    allowedFriendsCount = json['allowed_friends_count'];
     createdAt = DateTime.parse(json['created_at']).add(const Duration(hours: 9));
     withTagCount = json['with_tag_count'];
     sharable = json['sharable'];
