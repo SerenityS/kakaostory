@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kakaostory/const/kakao_urls.dart' as KakaoUrl;
 import 'package:kakaostory/controller/time_line_controller.dart';
 import 'package:kakaostory/model/kakao/feed.dart';
+import 'package:kakaostory/utils/kakao_api.dart';
 import 'package:kakaostory/utils/utils.dart';
 
 class TimeLineView extends GetView<TimeLineController> {
@@ -86,28 +88,32 @@ class TimeLineView extends GetView<TimeLineController> {
                             ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(feed.content!),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Wrap(
-                              spacing: 5,
-                              children: [
-                                feed.liked! ? const Icon(Icons.favorite) : const Icon(Icons.favorite_outline),
-                                Text(feed.likeCount.toString()),
-                                const Icon(Icons.chat_bubble_outline),
-                                Text(feed.commentCount.toString()),
-                              ],
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: feed.contentDecorators!.length,
+                                itemBuilder: ((context, index) {
+                                  if (feed.contentDecorators![index].type == "text") {
+                                    return Text(feed.contentDecorators![index].text!);
+                                  } else if (feed.contentDecorators![index].type == "profile") {
+                                    return Text(feed.contentDecorators![index].text!);
+                                  } else if (feed.contentDecorators![index].type == "emoticon") {
+                                    String emoticonUrl = KakaoApi.getEmoticonUrl(
+                                        id: feed.contentDecorators![index].itemId!,
+                                        resourceId: feed.contentDecorators![index].resourceId!.toString());
+                                    return Image.network(
+                                      emoticonUrl,
+                                      headers: {'Referer': KakaoUrl.mainUrl},
+                                      alignment: Alignment.centerLeft,
+                                      width: 100,
+                                      height: 100,
+                                    );
+                                  } else {
+                                    return const SizedBox();
+                                  }
+                                }),
+                              ),
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          },
         ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: (() async => await _timeLineController.refreshTimeLine())),
