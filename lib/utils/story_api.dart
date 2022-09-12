@@ -4,9 +4,14 @@ import 'package:kakaostory/model/kakao/feed.dart';
 import 'package:requests/requests.dart';
 
 class StoryApi {
-  static Future<List<Feed>> getFeeds() async {
-    var result = await Requests.get(KakaoUrl.feedUrl,
-        headers: {'cookie': AuthController.instance.kakaoCookies, 'x-requested-with': "XMLHttpRequest"});
+  static Future<List<Feed>> getFeeds({String? id}) async {
+    String feedUrl = KakaoUrl.feedUrl;
+    if (id != null) {
+      feedUrl = "$feedUrl?since=$id";
+    }
+
+    var result =
+        await Requests.get(feedUrl, headers: {'cookie': AuthController.instance.kakaoCookies, 'x-requested-with': "XMLHttpRequest"});
     return Feeds.fromJson(result.json()).feeds!;
   }
 }
