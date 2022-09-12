@@ -5,7 +5,7 @@ import 'package:kakaostory/controller/time_line_controller.dart';
 import 'package:kakaostory/model/kakao/feed.dart';
 import 'package:kakaostory/utils/utils.dart';
 
-class TimeLineView extends StatelessWidget {
+class TimeLineView extends GetView<TimeLineController> {
   TimeLineView({super.key});
 
   final TimeLineController _timeLineController = Get.put(TimeLineController());
@@ -15,6 +15,7 @@ class TimeLineView extends StatelessWidget {
     return Scaffold(
       body: Obx(
         () => ListView.builder(
+          controller: _timeLineController.scrollController.value,
           itemCount: _timeLineController.feeds.length,
           itemBuilder: (context, index) {
             Feed feed = _timeLineController.feeds[index];
