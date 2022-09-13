@@ -19,11 +19,11 @@ class KakaoApi {
   static String getEmoticonUrl({required String id, required String resourceId}) {
     String url = KakaoUrl.emoticonUrl;
     url += "/$id/thum_${resourceId.padLeft(3, '0')}.png?";
-    url += "credential=${AuthController.emoticonAuth.auth!.credential}";
-    url += "&expires=${AuthController.emoticonAuth.auth!.expires}";
+    url += "credential=${AuthController.emoticonAuth.credential}";
+    url += "&expires=${AuthController.emoticonAuth.expires}";
     url += "&allow_referer=story.kakao.com";
-    url += "&signature=${AuthController.emoticonAuth.auth!.encodedSignature}";
-    url += "&path=${AuthController.emoticonAuth.auth!.path}";
+    url += "&signature=${AuthController.emoticonAuth.encodedSignature}";
+    url += "&path=${AuthController.emoticonAuth.path}";
 
     return url;
   }

@@ -10,12 +10,12 @@ class AuthController extends GetxController {
   CookieManager cookieManager = CookieManager.instance();
   String kakaoCookies = "";
 
-  static EmoticonAuth emoticonAuth = EmoticonAuth();
+  static Auth emoticonAuth = Auth();
 
   @override
   onReady() async {
     super.onReady();
-    emoticonAuth = await KakaoApi.getEmoticonCredential();
+    emoticonAuth = await KakaoApi.getEmoticonCredential().then((value) => value.auth!);
   }
 
   saveCookies() async {
