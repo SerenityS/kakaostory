@@ -110,7 +110,7 @@ class Feed {
     downloadable = json['downloadable'];
     pinned = json['pinned'];
     allowedFriendsCount = json['allowed_friends_count'];
-    createdAt = DateTime.parse(json['created_at']).add(const Duration(hours: 9));
+    createdAt = json['created_at'] != null ? DateTime.parse(json['created_at']).add(const Duration(hours: 9)) : null;
     withTagCount = json['with_tag_count'];
     sharable = json['sharable'];
     if (json['closest_with_tags'] != null) {
@@ -139,7 +139,7 @@ class Feed {
       });
     }
     nextCallForActivityRecommend = json['next_call_for_activity_recommend'];
-    updatedAt = DateTime.parse(json['updated_at']).add(const Duration(hours: 9));
+    updatedAt = json['updated_at'] != null ? DateTime.parse(json['updated_at']).add(const Duration(hours: 9)) : null;
     mediaType = json['media_type'];
     activityType = json['activity_type'];
     id = json['id'];
