@@ -21,6 +21,7 @@ class TimeLineView extends GetView<TimeLineController> {
             await _timeLineController.refreshTimeLine();
           },
           child: ListView.builder(
+            cacheExtent: 9999,
             controller: _timeLineController.scrollController.value,
             itemCount: _timeLineController.feeds.length,
             itemBuilder: (context, index) {
